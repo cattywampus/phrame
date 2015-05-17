@@ -8,7 +8,46 @@
 </head>
 <body>
 
-<%= yield %>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container navbar-background">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Phrame</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+        </ul>
 
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#photo_upload_modal">Add Photos</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <%= yield %>
+  </div>
+
+  <div class="modal fade" id="photo_upload_modal" tabindex="-1" role="dialog" arialabelledby="upload_photo_label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <%= form_for Photo.new, html: { multipart: true } do |f| %>
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="upload_photo_label">Add New Photos</h4>
+          </div>
+          <div class="modal-body">
+            <%= f.file_field :image %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <%= f.submit class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
