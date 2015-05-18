@@ -16,9 +16,11 @@ class PhotosController < ApplicationController
       if @photo.save
         format.html { redirect_to photos_path }
         format.js
+        format.json { render json: @photo }
       else
         format.html { render :new }
         format.js
+        format.json { render json: @photo }
       end
     end
   end
